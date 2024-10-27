@@ -7,9 +7,8 @@
     Shell.FlyoutBehavior="Disabled"
     Title="Sexual_health_platform">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+    <ShellContent Route="GenderSurveyPage" ContentTemplate="{DataTemplate local:GenderSurveyPage}" />
+    <ShellContent Route="AgeSelectionPage" ContentTemplate="{DataTemplate local:AgeSelectionPage}" />
 
 </Shell>

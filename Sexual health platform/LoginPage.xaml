@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             
+             x:Class="Sexual_health_platform.LoginPage">
+	
+	<StackLayout Padding="30">
+		<Label Text="Login" FontSize="24" HorizontalOptions="Center" />
+		<Entry Placeholder="Username" x:Name="UsernameEntry" />
+		<Entry Placeholder="Password" IsPassword="True" x:Name="PasswordEntry" />
+		<Button Text="Login" Clicked="OnLoginButtonClicked" />
+		
+	</StackLayout>
+</ContentPage>
