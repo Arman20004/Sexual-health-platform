@@ -1,41 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sexual_health_platform.Data;
+using System;
 
 namespace Sexual_health_platform
 {
     public partial class AgeSelectionPage : ContentPage
     {
-        public AgeSelectionPage()
+        private readonly AppDbContext _dbContext;
+        private readonly string _username;
+        private readonly string _passwordHash;
+        private readonly string _email;
+        private int _age;
+
+        public AgeSelectionPage(AppDbContext dbContext, string username, string passwordHash, string email)
         {
             InitializeComponent();
-            BirthdatePicker.Date = DateTime.Today.AddYears(-7); // Default to minimum age of 13
+            _dbContext = dbContext;
+            _username = username;
+            _passwordHash = passwordHash;
+            _email = email;
         }
 
-        private void OnDateSelected(object sender, DateChangedEventArgs e)
+        private async void OnNextButtonClicked(object sender, EventArgs e)
         {
-            DateTime selectedDate = e.NewDate;
-            DateTime minAgeDate = DateTime.Today.AddYears(-7); // Set minimum age of 13
+            var birthdate = BirthdatePicker.Date;
+            _age = CalculateAge(birthdate);
 
-            if (selectedDate <= DateTime.Today && selectedDate <= minAgeDate)
+            if (_age <= 7)
             {
-                SubmitButton.IsEnabled = true;
+                await DisplayAlert("Error", "Please select a valid birthdate.", "OK");
+                return;
             }
-            else
-            {
-                SubmitButton.IsEnabled = false;
-                DisplayAlert("Invalid Date", "You must be at least 7 years old.", "OK");
-            }
+
+            await Navigation.PushAsync(new GenderSurveyPage(_dbContext, _username, _passwordHash, _age, _email));
         }
 
-        private async void OnSubmitButtonClicked(object sender, EventArgs e)
+        private int CalculateAge(DateTime birthDate)
         {
-            var birthDate = BirthdatePicker.Date;
-            await DisplayAlert("Thank You", $"Your birthdate is: {birthDate.ToShortDateString()}", "OK");
-            // Here you can proceed with further actions, such as saving data.
+            var today = DateTime.Today;
+            var age = today.Year - birthDate.Year;
+
+            if (birthDate > today.AddYears(-age))
+                age--;
+
+            return age;
         }
     }
-
 }

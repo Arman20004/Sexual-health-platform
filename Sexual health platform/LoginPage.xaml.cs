@@ -1,30 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
+using Microsoft.EntityFrameworkCore;
+using Sexual_health_platform.Data;
 
 namespace Sexual_health_platform
 {
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        private readonly AppDbContext _dbContext;
+
+        public LoginPage(AppDbContext dbContext)
         {
             InitializeComponent();
+            _dbContext = dbContext;
         }
 
         private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            // Here, implement your authentication logic (simplified for example)
-            if (!string.IsNullOrEmpty(UsernameEntry.Text) && !string.IsNullOrEmpty(PasswordEntry.Text))
+            if (string.IsNullOrEmpty(UsernameEntry.Text) || string.IsNullOrEmpty(PasswordEntry.Text))
             {
-                await Navigation.PushAsync(new GenderSurveyPage());
+                await DisplayAlert("Error", "Please fill all fields.", "OK");
+                return;
             }
-            else
+
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Username == UsernameEntry.Text || u.Email == EmailEntry.Text);
+
+            if (user == null)
             {
-                await DisplayAlert("Error", "Please enter valid credentials.", "OK");
+                await DisplayAlert("Error", "Invalid username or password.", "OK");
+                return;
             }
+            
+            if (!BCrypt.Net.BCrypt.Verify(PasswordEntry.Text, user.PasswordHash))
+            {
+                await DisplayAlert("Error", "Invalid username or password.", "OK");
+                return;
+            }
+
+            Preferences.Set("IsRegistered", true);
+
+            await DisplayAlert("Success", "Login successful!", "OK");
+            await Navigation.PushAsync(new MainPage());
         }
     }
-
 }
