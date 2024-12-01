@@ -43,9 +43,7 @@ namespace Sexual_health_platform
             _dbContext.Users.Add(newUser);
             await _dbContext.SaveChangesAsync();
 
-            await DisplayAlert("Success", "Registration completed successfully.", "OK");
-
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new MainPage(_username, _email));
         }
     }
 }

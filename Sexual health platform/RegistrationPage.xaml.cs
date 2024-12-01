@@ -49,17 +49,8 @@ namespace Sexual_health_platform
 
             if (existingUser != null)
             {
-                bool loginChoice = await DisplayAlert("User Found", "This username or email is already registered. Would you like to log in instead?", "Yes", "No");
+                await DisplayAlert("User Already Exists", "This username or email is already registered. Please choose another one", "Yes", "No");
 
-                if (loginChoice)
-                {
-                    await Navigation.PushAsync(new LoginPage(_dbContext));
-                    return;
-                }
-                else
-                {
-                    return; 
-                }
             }
 
             _passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
@@ -88,6 +79,11 @@ namespace Sexual_health_platform
             string verificationCode = await DisplayPromptAsync("Email Verification", "Enter the verification code sent to your email:");
 
             return verificationCode == "123456";
+        }
+
+        private async void OnLoginButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoginPage(_dbContext));
         }
     }
 }

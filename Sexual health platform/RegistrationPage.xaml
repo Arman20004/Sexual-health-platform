@@ -13,6 +13,12 @@
         <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
         <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm Password" IsPassword="True" />
         <Button Text="Next" Clicked="OnNextButtonClicked" />
+        <Button Text="Already registered? Proceed to Login" 
+                Clicked="OnLoginButtonClicked" 
+                FontSize="16" 
+                HorizontalOptions="Center" 
+                TextColor="#007ACC" 
+                BackgroundColor="Transparent" />
     
     </StackLayout>
 </ContentPage>

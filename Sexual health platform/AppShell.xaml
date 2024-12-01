@@ -12,5 +12,7 @@
     <ShellContent Route="AgeSelectionPage" ContentTemplate="{DataTemplate local:AgeSelectionPage}" />
     <ShellContent Route="RegistrationPage" ContentTemplate="{DataTemplate local:RegistrationPage}" />
     <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
+    <ShellContent Route="ChatPage" ContentTemplate="{DataTemplate local:ChatPage}" />
+    <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate local:ProfilePage}" />
 
 </Shell>

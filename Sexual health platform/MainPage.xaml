@@ -1,11 +1,142 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-    
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sexual_health_platform.MainPage">
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Label Text="Hello, World!"
-               FontSize="24"
-               TextColor="Black" />
-    </StackLayout>
+
+    <Grid Padding="20" RowSpacing="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" Margin="0,0,0,10">
+            <Label x:Name="WelcomeLabel"
+                   Text="HELLO, USER"
+                   FontSize="30"
+                   FontAttributes="Bold"/>
+            <Label Text="Your featured activities"
+                   FontSize="16"
+                   TextColor="#833759" />
+        </StackLayout>
+
+        <ScrollView Grid.Row="1" Padding="10,10,10,10">
+            <VerticalStackLayout Spacing="15">
+
+                <Frame CornerRadius="10" Padding="0" HeightRequest="150">
+                    <Grid>
+                        <Image Source="sexual_activity.jpg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToSexualActivity}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout Padding="10" VerticalOptions="Center">
+                            <Label Text="Sexual activity"
+                                   FontAttributes="Bold"
+                                   FontSize="18"/>
+                            <Label Text="Here you can track your protected or unprotected sexual activity"
+                                   FontSize="14"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame CornerRadius="10" Padding="0" HeightRequest="150">
+                    <Grid>
+                        <Image Source="checkups.jpg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToCheckups}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout Padding="10" VerticalOptions="Center">
+                            <Label Text="Check ups"
+                                   FontAttributes="Bold"
+                                   FontSize="18"/>
+                            <Label Text="Here you can track medical appointments"
+                                   FontSize="14"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame CornerRadius="10" Padding="0" HeightRequest="150">
+                    <Grid>
+                        <Image Source="test_results.jpg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToTestResults}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout Padding="10" VerticalOptions="Center">
+                            <Label Text="Test results"
+                                   FontAttributes="Bold"
+                                   FontSize="18"/>
+                            <Label Text="Here you can track your test results"
+                                   FontSize="14"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame CornerRadius="10" Padding="0" HeightRequest="150">
+                    <Grid>
+                        <Image Source="pill_reminder.jpg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateToPillReminder}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout Padding="10" VerticalOptions="Center">
+                            <Label Text="Pill reminder"
+                                   FontAttributes="Bold"
+                                   FontSize="18"/>
+                            <Label Text="Here you can set pill reminders"
+                                   FontSize="14"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="2" ColumnSpacing="20" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="home.png" HeightRequest="30" WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="NavigateHome" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Home" FontSize="14" HorizontalTextAlignment="Center" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="calendar.png" HeightRequest="30" WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="NavigateCalendar" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Calendar" FontSize="14" HorizontalTextAlignment="Center" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="chat.png" HeightRequest="30" WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OpenChat" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Chat" FontSize="14" HorizontalTextAlignment="Center" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="profile.png" HeightRequest="30" WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="NavigateProfile" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Profile" FontSize="14" HorizontalTextAlignment="Center" />
+            </StackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

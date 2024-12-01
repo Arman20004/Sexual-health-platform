@@ -1,0 +1,49 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sexual_health_platform.ProfilePage"
+             Title="Profile">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+
+            <Frame Padding="20" CornerRadius="10" HorizontalOptions="Center">
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Image Source="profile_picture_placeholder.png" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" />
+                    <Label Text="{Binding Username}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="{Binding Email}" FontSize="14" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="10" CornerRadius="10">
+                <VerticalStackLayout Spacing="15">
+
+                    <HorizontalStackLayout>
+                        <Image Source="edit_icon.png" WidthRequest="25" HeightRequest="25" />
+                        <Label Text="Edit Profile" FontSize="16" VerticalOptions="Center" />
+                        <Image Source="chevron_right.png" HorizontalOptions="EndAndExpand" WidthRequest="20" HeightRequest="20" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Image Source="privacy_icon.png" WidthRequest="25" HeightRequest="25" />
+                        <Label Text="Privacy Settings" FontSize="16" VerticalOptions="Center" />
+                        <Image Source="chevron_right.png" HorizontalOptions="EndAndExpand" WidthRequest="20" HeightRequest="20" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Image Source="notifications_icon.png" WidthRequest="25" HeightRequest="25" />
+                        <Label Text="Notifications" FontSize="16" VerticalOptions="Center" />
+                        <Image Source="chevron_right.png" HorizontalOptions="EndAndExpand" WidthRequest="20" HeightRequest="20" />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Log Out"
+                    BackgroundColor="#833759"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Clicked="LogoutClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
