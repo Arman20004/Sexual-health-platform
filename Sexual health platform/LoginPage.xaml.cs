@@ -40,7 +40,6 @@ namespace Sexual_health_platform
 
             Preferences.Set("IsRegistered", true);
 
-            await DisplayAlert("Success", "Login successful!", "OK");
             await Navigation.PushAsync(new MainPage());
         }
     }

@@ -44,6 +44,24 @@ namespace Sexual_health_platform
                 return;
             }
 
+            var existingUser = await _dbContext.Users
+               .FirstOrDefaultAsync(u => u.Username == _username || u.Email == _email);
+
+            if (existingUser != null)
+            {
+                bool loginChoice = await DisplayAlert("User Found", "This username or email is already registered. Would you like to log in instead?", "Yes", "No");
+
+                if (loginChoice)
+                {
+                    await Navigation.PushAsync(new LoginPage(_dbContext));
+                    return;
+                }
+                else
+                {
+                    return; 
+                }
+            }
+
             _passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
 
             bool isEmailVerified = await SimulateEmailVerification(_email);

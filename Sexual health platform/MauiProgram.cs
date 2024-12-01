@@ -18,14 +18,12 @@ namespace Sexual_health_platform
                 });
 
             builder.Services.AddDbContext<AppDbContext>(options =>
-               options.UseSqlServer("Server=tcp:sexual-health-platform.database.windows.net,1433;Initial Catalog=Sexual_health_platform;Persist Security Info=False;User ID=Armin;Password=G1@di)lus=_=;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+                options.UseSqlServer("Server=tcp:sexual-health-platform.database.windows.net,1433;Initial Catalog=Sexual_health_platform;Persist Security Info=False;User ID=Armin;Password=G1@di)lus=_=;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+                sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
 
             using (var scope = builder.Services.BuildServiceProvider().CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                builder.Services.AddDbContext<AppDbContext>(options =>
-                   options.UseSqlServer("Server=tcp:sexual-health-platform.database.windows.net,1433;Initial Catalog=Sexual_health_platform;Persist Security Info=False;User ID=Armin;Password=G1@di)lus=_=;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;\"",
-                   sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
                 dbContext.Database.EnsureCreated();
             }
 

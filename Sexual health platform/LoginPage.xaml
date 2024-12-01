@@ -7,9 +7,9 @@
     <StackLayout Padding="30">
         
         <Label Text="Login" FontSize="24" HorizontalOptions="Center" />
-        <Entry x:Name="UsernameEntry" Placeholder="Enter username" />
+        <Entry x:Name="UsernameEntry" Placeholder="Username" />
         <Entry x:Name="EmailEntry" Placeholder="Email" />
-        <Entry x:Name="PasswordEntry" Placeholder="Enter password" IsPassword="True" />
+        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
         <Button Text="Login" Clicked="OnLoginButtonClicked" />
         
     </StackLayout>
